@@ -4,131 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Let it Light | مسار سلام</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;900&display=swap" rel="stylesheet">
     <style>
-        :root {
-            /* اللون البني الرسمي المستخرج من الهوية */
-            --brand-color: #8B4513; 
-            --soft-white: #ffffff;
-            --text-dark: #333333;
-        }
-
         body {
             margin: 0;
-            padding: 0;
             font-family: 'Cairo', sans-serif;
-            background-color: var(--soft-white);
-            /* إضافة خلفية بأشكال هندسية هادئة (Dots) لتعكس روح الهوية */
-            background-image: radial-gradient(rgba(139, 69, 19, 0.05) 1.5px, transparent 1.5px);
-            background-size: 20px 20px;
-            color: var(--text-dark);
+            background: #fdfdfd;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            overflow: hidden;
         }
-
-        .container {
+        .main-card {
+            background: #fff;
+            padding: 40px 20px;
+            border: 4px solid #8B4513; /* لون الهوية */
+            box-shadow: 10px 10px 0px #8B4513;
             text-align: center;
-            padding: 50px 30px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 20px;
-            max-width: 480px;
-            width: 90%;
-            border: 1px solid rgba(139, 69, 19, 0.1);
+            max-width: 400px;
+            width: 85%;
         }
-
-        .symbol-logo {
-            font-size: 1.4rem;
+        .header-tag {
+            background: #8B4513;
+            color: #fff;
+            padding: 4px 12px;
             font-weight: 900;
-            color: white;
-            background-color: var(--brand-color);
-            padding: 12px 25px;
-            margin: 0 auto 25px;
-            border-radius: 10px;
-            letter-spacing: 1px;
-            box-shadow: 0 5px 15px rgba(139, 69, 19, 0.15);
-        }
-
-        h1 {
-            font-size: 2.8rem;
-            font-weight: 900;
-            margin-bottom: 5px;
-            color: var(--brand-color);
-            text-transform: uppercase;
-        }
-
-        .slogan {
-            font-size: 1.2rem;
-            color: #666;
-            margin-bottom: 40px;
-            font-weight: 400;
-        }
-
-        .message-box {
-            min-height: 90px;
-            margin-bottom: 40px;
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--text-dark);
-            line-height: 1.6;
-            transition: all 0.5s ease;
-        }
-
-        .btn-brand {
-            padding: 15px 45px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            background: var(--brand-color);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 20px rgba(139, 69, 19, 0.2);
-        }
-
-        .btn-brand:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
-            box-shadow: 0 12px 25px rgba(139, 69, 19, 0.3);
-        }
-
-        .footer-brand {
-            margin-top: 35px;
+            display: inline-block;
+            margin-bottom: 20px;
             font-size: 0.9rem;
-            color: #999;
-            font-weight: 400;
         }
-    </style>
-</head>
-<body>
-
-    <div class="container">
-        <div class="symbol-logo">مسار سلام</div>
-        
-        <h1>Let it Light</h1>
-        <p class="slogan">جرعة تفاؤل ودعم من مسار سلام</p>
-        
-        <div class="message-box" id="msg">مرحباً بك.. اضغط لاستقبال رسالتك التشجيعية لليوم</div>
-        
-        <button class="btn-brand" onclick="generateMessage()">استقبل رسالة نور</button>
-        
-        <div class="footer-brand">© 2026 مسار سلام | Let it Light</div>
-    </div>
-
-    <script>
-        const messages = [
-            "أنت لست وحدك، مسار سلام يدعمك خطوة بخطوة.",
-            "كل يوم هو بداية جديدة، ثق في قدرتك على التعافي.",
-            "وجودك يصنع فارقاً، Let it Light في حياتك.",
-            "داخلك نور قوي، اسمح له بالظهور اليوم.",
-            "صحتك النفسية رحلة، وكل خطوة فيها شجاعة.",
-            "تذكر أنك تستحق السلام والراحة النفسية.",
-            "مسار سلام يبدأ من قبولك لذاتك.",
-            "لا تستعجل الرحلة، فكل عسير سيمر."
-        ];
+        h1 {
+            font-size: 2.5rem;
+            margin: 0;
+            color: #8B4513;
+            font-weight: 900;
+        }
+        .message-area {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin: 40px 0;
+            color: #333;
 
         function generateMessage() {
             const msgElement = document.getElementById('msg');
