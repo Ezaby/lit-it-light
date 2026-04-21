@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Let it Light | وعيٌ يُشيِّد</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;600;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-glow: #ffd700;
+            --bg-color: #0f172a;
+            --text-color: #f8fafc;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: linear-gradient(to right, #ffd700, #ff8c00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 10px 20px rgba(255, 215, 0, 0.2);
+        }
+
+        .slogan {
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: #94a3b8;
+            margin-bottom: 30px;
+        }
+
+        /* رمز Ez اللي طلبته بشكل ديزاين روش */
+        .symbol {
+            font-size: 3rem;
+            font-weight: 900;
+            border: 3px solid var(--primary-glow);
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        .btn-glow {
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            background: transparent;
+            border: 2px solid var(--primary-glow);
+            color: var(--primary-glow);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s;
+            text-decoration: none;
+        }
+
+        .btn-glow:hover {
+            background: var(--primary-glow);
+            color: var(--bg-color);
+            box-shadow: 0 0 40px var(--primary-glow);
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="symbol">Ez</div>
+        <h1>Let it Light</h1>
+        <p class="slogan">وعيٌ يُشيِّد… جهلٌ يُبدِّد</p>
+        <a href="#" class="btn-glow">استقبل رسالتك الإيجابية</a>
+    </div>
+
+</body>
+</html>
