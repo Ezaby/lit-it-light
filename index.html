@@ -1,78 +1,132 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Let it light</title>
 
 <style>
-body {
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+
+* {
   margin:0;
-  font-family:'Segoe UI',sans-serif;
-  background:linear-gradient(135deg,#0f172a,#1e293b);
-  color:white;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Inter', sans-serif;
 }
 
-h1 {
-  margin:15px;
+body {
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background: radial-gradient(circle at top, #1e293b, #0f172a);
+  overflow:hidden;
+  color:white;
+}
+
+/* glow background */
+body::before {
+  content:"";
+  position:absolute;
+  width:600px;
+  height:600px;
+  background:rgba(56,189,248,0.15);
+  filter:blur(120px);
+  top:-100px;
+  left:-100px;
 }
 
 .container {
-  width:90%;
+  width:92%;
   max-width:420px;
+  z-index:2;
 }
 
-.card {
-  background:rgba(255,255,255,0.08);
-  border-radius:25px;
-  padding:20px;
-  backdrop-filter:blur(15px);
+/* HEADER */
+.title {
+  text-align:center;
+  font-size:2rem;
+  font-weight:600;
   margin-bottom:15px;
 }
 
+/* CARD */
+.card {
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.08);
+  backdrop-filter:blur(18px);
+  border-radius:24px;
+  padding:16px;
+  margin-bottom:12px;
+}
+
+/* RANDOM MESSAGE */
 #randomMsg {
   text-align:center;
-  margin:10px 0;
+  opacity:0.9;
+  font-size:0.95rem;
 }
 
-button {
+.btn {
+  margin-top:10px;
+  width:100%;
+  padding:10px;
   border:none;
   border-radius:12px;
-  padding:8px 12px;
-  margin:5px;
-  cursor:pointer;
   background:#38bdf8;
+  cursor:pointer;
+  font-weight:600;
+  transition:0.2s;
 }
 
-.moods button {
-  background:rgba(255,255,255,0.2);
+.btn:hover {
+  transform:scale(1.03);
 }
 
-.active {
-  background:#38bdf8 !important;
+/* MOODS */
+.moods {
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+.mood {
+  padding:6px 10px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,0.2);
+  cursor:pointer;
+  font-size:0.8rem;
+  transition:0.2s;
+}
+
+.mood.active {
+  background:#38bdf8;
   color:black;
 }
 
-.chat-box {
-  height:250px;
+/* CHAT */
+.chat {
+  height:260px;
   overflow-y:auto;
+  padding-right:5px;
 }
 
-.message {
-  margin:10px 0;
+.msg {
   display:flex;
+  margin:8px 0;
 }
 
 .user { justify-content:flex-end; }
 .bot { justify-content:flex-start; }
 
 .bubble {
-  padding:10px 15px;
-  border-radius:15px;
-  max-width:70%;
+  max-width:75%;
+  padding:10px 12px;
+  border-radius:14px;
+  font-size:0.9rem;
+  line-height:1.4;
 }
 
 .user .bubble {
@@ -81,161 +135,136 @@ button {
 }
 
 .bot .bubble {
-  background:rgba(255,255,255,0.2);
+  background:rgba(255,255,255,0.12);
 }
 
-.input-area {
+/* INPUT */
+.inputBox {
   display:flex;
+  gap:6px;
   margin-top:10px;
 }
 
 input {
   flex:1;
   padding:10px;
+  border-radius:12px;
   border:none;
-  border-radius:10px;
+  outline:none;
+  background:rgba(255,255,255,0.08);
+  color:white;
 }
 
-.typing {
-  font-size:12px;
-  opacity:0.6;
+input::placeholder {
+  color:#aaa;
+}
+
+.send {
+  padding:10px 14px;
+  border:none;
+  border-radius:12px;
+  background:#38bdf8;
+  cursor:pointer;
+}
+
+/* scrollbar */
+.chat::-webkit-scrollbar {
+  width:4px;
+}
+.chat::-webkit-scrollbar-thumb {
+  background:#38bdf8;
+  border-radius:10px;
 }
 </style>
 </head>
 
 <body>
 
-<h1>Let it light ✨</h1>
-
 <div class="container">
 
-  <!-- Random Message -->
+  <div class="title">Let it light ✨</div>
+
+  <!-- RANDOM -->
   <div class="card">
-    <p id="randomMsg"></p>
-    <button onclick="newMsg()">✨ رسالة جديدة</button>
+    <div id="randomMsg"></div>
+    <button class="btn" onclick="newMsg()">New Light</button>
   </div>
 
-  <!-- Mood -->
+  <!-- MOOD -->
   <div class="card moods">
-    <div>اختر حالتك:</div>
-    <button onclick="setMood('حزين')" id="m1">😔</button>
-    <button onclick="setMood('قلق')" id="m2">😰</button>
-    <button onclick="setMood('متوتر')" id="m3">😡</button>
-    <button onclick="setMood('سعيد')" id="m4">😊</button>
+    <div class="mood" onclick="setMood(this,'sad')">😔 حزين</div>
+    <div class="mood" onclick="setMood(this,'anxious')">😰 قلق</div>
+    <div class="mood" onclick="setMood(this,'angry')">😡 متوتر</div>
+    <div class="mood" onclick="setMood(this,'happy')">😊 سعيد</div>
   </div>
 
-  <!-- Chat -->
+  <!-- CHAT -->
   <div class="card">
-    <div class="chat-box" id="chat"></div>
 
-    <div class="input-area">
-      <input id="input" placeholder="اكتب هنا..." />
-      <button onclick="send()">➤</button>
+    <div class="chat" id="chat"></div>
+
+    <div class="inputBox">
+      <input id="input" placeholder="اكتب رسالتك..." />
+      <button class="send" onclick="send()">➤</button>
     </div>
+
   </div>
 
 </div>
 
 <script>
-const API_URL = "PUT_API_HERE";
-
-let currentMood = "";
-
 const messages = [
   "كل يوم بداية جديدة ✨",
   "أنت أقوى مما تظن 💪",
-  "السلام الداخلي يبدأ منك 🌿",
-  "خذ نفسًا عميقًا 💫",
-  "الأشياء الجميلة قادمة 💖"
+  "السلام يبدأ من الداخل 🌿",
+  "خد نفس وكمّل 💫",
+  "الأشياء الجميلة جاية 💖"
 ];
 
-function newMsg() {
+let mood = "";
+
+function newMsg(){
   document.getElementById("randomMsg").innerText =
-    messages[Math.floor(Math.random() * messages.length)];
+    messages[Math.floor(Math.random()*messages.length)];
 }
+
 window.onload = newMsg;
 
-// Mood
-function setMood(mood) {
-  currentMood = mood;
-
-  document.querySelectorAll(".moods button").forEach(b => b.classList.remove("active"));
-  event.target.classList.add("active");
+function setMood(el, value){
+  mood = value;
+  document.querySelectorAll(".mood").forEach(m=>m.classList.remove("active"));
+  el.classList.add("active");
 }
 
-// Chat UI
-function addMessage(text, type) {
+function addMsg(text,type){
   const chat = document.getElementById("chat");
 
-  const msg = document.createElement("div");
-  msg.className = "message " + type;
+  const row = document.createElement("div");
+  row.className = "msg " + type;
 
   const bubble = document.createElement("div");
   bubble.className = "bubble";
   bubble.innerText = text;
 
-  msg.appendChild(bubble);
-  chat.appendChild(msg);
+  row.appendChild(bubble);
+  chat.appendChild(row);
 
   chat.scrollTop = chat.scrollHeight;
 }
 
-// Send
-async function send() {
+async function send(){
   const input = document.getElementById("input");
   const text = input.value;
+  if(!text) return;
 
-  if (!text) return;
+  addMsg(text,"user");
+  input.value="";
 
-  addMessage(text, "user");
-  input.value = "";
+  addMsg("مسار سلام يكتب...","bot");
 
-  const chat = document.getElementById("chat");
-
-  const typing = document.createElement("div");
-  typing.className = "typing";
-  typing.innerText = "مسار سلام يكتب...";
-  chat.appendChild(typing);
-
-  const res = await fetch(API_URL, {
-    method:"POST",
-    headers:{ "Content-Type":"application/json" },
-    body: JSON.stringify({
-      message: text,
-      mood: currentMood
-    })
-  });
-
-  const data = await res.json();
-
-  chat.removeChild(typing);
-
-  typeEffect(data.reply);
-}
-
-// Typing animation
-function typeEffect(text) {
-  let i = 0;
-  const chat = document.getElementById("chat");
-
-  const msg = document.createElement("div");
-  msg.className = "message bot";
-
-  const bubble = document.createElement("div");
-  bubble.className = "bubble";
-
-  msg.appendChild(bubble);
-  chat.appendChild(msg);
-
-  function typing() {
-    if (i < text.length) {
-      bubble.innerHTML += text.charAt(i);
-      i++;
-      setTimeout(typing, 20);
-    }
-  }
-
-  typing();
+  setTimeout(()=>{
+    document.querySelector(".bot:last-child .bubble").remove();
+  },500);
 }
 </script>
 
